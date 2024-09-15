@@ -1,6 +1,8 @@
 # How to run
 
+```sh
 go run hello.go
+```
 
 # Screenshots
 
