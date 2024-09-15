@@ -4,4 +4,4 @@ go run hello.go
 
 # Screenshots
 
-![alt text](image.png)
+![alt text](.github/image.png)
