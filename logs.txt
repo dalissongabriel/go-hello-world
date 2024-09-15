@@ -1,9 +1,0 @@
-15/09/2024 12:39:36 -- https://www.alura.com.br- online: true
-15/09/2024 12:39:37 -- https://httpstat.us/random/200,500-502- online: false
-15/09/2024 12:39:38 -- https://www.caelum.com.br- online: true
-15/09/2024 12:39:41 -- https://www.alura.com.br- online: true
-15/09/2024 12:39:42 -- https://httpstat.us/random/200,500-502- online: false
-15/09/2024 12:39:42 -- https://www.caelum.com.br- online: true
-15/09/2024 12:39:45 -- https://www.alura.com.br- online: true
-15/09/2024 12:39:46 -- https://httpstat.us/random/200,500-502- online: false
-15/09/2024 12:39:47 -- https://www.caelum.com.br- online: true
