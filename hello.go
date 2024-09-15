@@ -11,21 +11,21 @@ import (
 	"time"
 )
 
-const quantidadeMonitoramentos = 3
-const delayEntreMonitoramentos = 3 * time.Second
+const amountSiteCheck = 3
+const delayBetweenChecks = 3 * time.Second
 
 func main() {
-	exibeIntroducao()
+	showWelcome()
 
 	for {
 		fmt.Println("")
-		comando := leComando()
+		action := readAction()
 
-		switch comando {
+		switch action {
 		case 1:
-			iniciarMonitoramento()
+			startCheck()
 		case 2:
-			imprimeLogs()
+			showLogs()
 		case 0:
 			fmt.Println("Saindo do programa.")
 			os.Exit(0)
@@ -37,36 +37,36 @@ func main() {
 
 }
 
-func exibeIntroducao() {
-	nome := "Douglas"
-	versao := 1.1
+func showWelcome() {
+	nome := "Alisson"
 	fmt.Println("Olá, sr.", nome)
-	fmt.Println("Este programa está na versão", versao)
 }
 
-func leComando() int {
+func readAction() int {
 	fmt.Println("1- Iniciar Monitoramento")
 	fmt.Println("2- Exibir Logs")
 	fmt.Println("0- Sair Programa")
 
-	var comandoLido int
-	fmt.Scan(&comandoLido)
-	return comandoLido
+	var chosenOption int
+	fmt.Scan(&chosenOption)
+	return chosenOption
 }
 
-func iniciarMonitoramento() {
-	sites := leSitesDoArquivo()
+func startCheck() {
+	sites := getSitesFromFile()
 
-	for i := 0; i < quantidadeMonitoramentos; i++ {
+	for i := 0; i < amountSiteCheck; i++ {
 		fmt.Println("")
 		for _, site := range sites {
-			testaSite(site)
+			checkSite(site)
 		}
-		time.Sleep(delayEntreMonitoramentos)
+		if i != amountSiteCheck-1 {
+			time.Sleep(delayBetweenChecks)
+		}
 	}
 }
 
-func testaSite(site string) {
+func checkSite(site string) {
 	resp, err := http.Get(site)
 
 	if err != nil {
@@ -76,28 +76,28 @@ func testaSite(site string) {
 
 	if resp.StatusCode == 200 {
 		fmt.Println("Site:", resp.Request.URL, "OK - StatusCode:", "[", resp.StatusCode, "]")
-		registraLog(site, true)
+		writeLogs(site, true)
 	} else {
 		fmt.Println("Site:", resp.Request.URL, "Falha - StatusCode:", "[", resp.StatusCode, "]")
-		registraLog(site, false)
+		writeLogs(site, false)
 	}
 }
 
-func leSitesDoArquivo() []string {
+func getSitesFromFile() []string {
 	sites := []string{}
-	arquivo, err := os.Open("sites.txt")
+	file, err := os.Open("sites.txt")
 
 	if err != nil {
 		fmt.Println("Erro ao ler o arquivo de sites", err)
 		os.Exit(-1)
 	}
 
-	leitor := bufio.NewReader(arquivo)
+	reader := bufio.NewReader(file)
 
 	for {
-		linha, err := leitor.ReadString('\n')
-		linha = strings.TrimSpace(linha)
-		sites = append(sites, linha)
+		row, err := reader.ReadString('\n')
+		row = strings.TrimSpace(row)
+		sites = append(sites, row)
 
 		if err == io.EOF {
 			break
@@ -107,40 +107,40 @@ func leSitesDoArquivo() []string {
 		}
 	}
 
-	arquivo.Close()
+	file.Close()
 
 	return sites
 }
 
-func registraLog(site string, status bool) {
-	arquivo, err := os.OpenFile("logs.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+func writeLogs(site string, status bool) {
+	file, err := os.OpenFile("logs.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 
 	if err != nil {
 		fmt.Println("Erro ao escrever o log", err)
 		os.Exit(-1)
 	}
 
-	arquivo.WriteString(time.Now().Format("02/01/2006 15:04:05") + " -- " + site + "- online: " + strconv.FormatBool(status) + "\n")
+	file.WriteString(time.Now().Format("02/01/2006 15:04:05") + " -- " + site + "- online: " + strconv.FormatBool(status) + "\n")
 
-	arquivo.Close()
+	file.Close()
 }
 
-func imprimeLogs() {
-	arquivo, err := os.Open("logs.txt")
+func showLogs() {
+	file, err := os.Open("logs.txt")
 
 	if err != nil {
 		fmt.Println("Erro ao abrir o arquivo de logs", err)
 		os.Exit(-1)
 	}
 
-	conteudo, err := io.ReadAll(arquivo)
+	content, err := io.ReadAll(file)
 
 	if err != nil {
 		fmt.Println("Erro ao ler o arquivo de logs", err)
 		os.Exit(-1)
 	}
 
-	fmt.Println(string(conteudo))
+	fmt.Println(string(content))
 
-	arquivo.Close()
+	file.Close()
 }
