@@ -1,0 +1,3 @@
+https://www.alura.com.br
+https://httpstat.us/random/200,500-502
+https://www.caelum.com.br

@@ -1,0 +1,27 @@
+Site: https://www.alura.com.br- online: true
+Site: https://httpstat.us/random/200,500-502- online: true
+Site: https://www.caelum.com.br- online: true
+Site: https://www.alura.com.br- online: true
+Site: https://httpstat.us/random/200,500-502- online: false
+Site: https://www.caelum.com.br- online: true
+Site: https://www.alura.com.br- online: true
+Site: https://httpstat.us/random/200,500-502- online: false
+Site: https://www.caelum.com.br- online: true
+15/09/2024 12:00:46Site: https://www.alura.com.br- online: true
+15/09/2024 12:00:47Site: https://httpstat.us/random/200,500-502- online: false
+15/09/2024 12:00:47Site: https://www.caelum.com.br- online: true
+15/09/2024 12:00:50Site: https://www.alura.com.br- online: true
+15/09/2024 12:00:51Site: https://httpstat.us/random/200,500-502- online: false
+15/09/2024 12:00:52Site: https://www.caelum.com.br- online: true
+15/09/2024 12:00:55Site: https://www.alura.com.br- online: true
+15/09/2024 12:00:56Site: https://httpstat.us/random/200,500-502- online: false
+15/09/2024 12:00:56Site: https://www.caelum.com.br- online: true
+15/09/2024 12:01:30 -- https://www.alura.com.br- online: true
+15/09/2024 12:01:31 -- https://httpstat.us/random/200,500-502- online: false
+15/09/2024 12:01:31 -- https://www.caelum.com.br- online: true
+15/09/2024 12:01:34 -- https://www.alura.com.br- online: true
+15/09/2024 12:01:36 -- https://httpstat.us/random/200,500-502- online: false
+15/09/2024 12:01:36 -- https://www.caelum.com.br- online: true
+15/09/2024 12:01:39 -- https://www.alura.com.br- online: true
+15/09/2024 12:01:40 -- https://httpstat.us/random/200,500-502- online: true
+15/09/2024 12:01:41 -- https://www.caelum.com.br- online: true
